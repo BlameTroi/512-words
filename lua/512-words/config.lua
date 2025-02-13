@@ -5,7 +5,7 @@ local defaults = {
 	-- uncomment any of the options below, or add other vim.bo options you want to apply
 	buffer = {
 		textwidth = 0, -- auto-wrapping at a fixed width (inserts \n newlines)
-		formatoptions = "q", -- allow auto formatting with gq (inserts \n newlines)
+		formatoptions = "qt", -- allow auto formatting with gq (inserts \n newlines), auto wrap if textwidth is > 0
 	},
 	window = {
 		list = false, -- Disable whitespace characters
@@ -22,6 +22,7 @@ local defaults = {
 	split = true, -- If true, will create the journal window as a split, false creates a new buffer window
 	words = 0x200, -- (0x200 == 512) Set the number of words required to get a star ⭐
 	storage_directory = tostring(vim.fn.stdpath("data")), -- Where all your files are saved, if you change the default "~" will be expanded for you.
+
 	-- NOTE: Do not alter the folder/file naming structure in the saved directory. The files are read to determine stars.
 }
 
