@@ -15,12 +15,12 @@ it's more comfortable.
 ## Usage
 For `Packer`:
 ```
-use { "ellisonleao/gruvbox.nvim" }
+use { "Blovio/512-words" }
 ```
 
 For `Lazy.nvim`:
 ```
-{ "ellisonleao/gruvbox.nvim" }
+{ "Blovio/512-words" }
 ```
 
 ## Basic Usage
