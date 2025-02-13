@@ -78,6 +78,11 @@ local function update_floating_window()
 end
 
 local function ensure_floating_windows()
+	local words_width = 17
+	local words_height = 1
+	local calendar_width = 21
+	local calendar_height = 7
+
 	if not M.floating_calendar_buf then
 		M.floating_calendar_buf = vim.api.nvim_create_buf(false, true)
 	end
@@ -87,10 +92,10 @@ local function ensure_floating_windows()
 	if not M.floating_words_win or not vim.api.nvim_win_is_valid(M.floating_words_win) then
 		M.floating_words_win = vim.api.nvim_open_win(M.floating_words_buf, false, {
 			relative = "editor",
-			width = 17,
-			height = 1,
-			row = vim.o.lines - 7,
-			col = vim.o.columns + 80,
+			width = words_width,
+			height = words_height,
+			row = 0,
+			col = vim.o.columns - words_width - 2,
 			style = "minimal",
 			noautocmd = true,
 			focusable = false,
@@ -99,10 +104,10 @@ local function ensure_floating_windows()
 	if not M.floating_calendar_win or not vim.api.nvim_win_is_valid(M.floating_calendar_win) then
 		M.floating_calendar_win = vim.api.nvim_open_win(M.floating_calendar_buf, false, {
 			relative = "editor",
-			width = 21,
-			height = 7,
-			row = vim.o.lines - 7,
-			col = vim.o.columns - 10,
+			width = calendar_width,
+			height = calendar_height,
+			row = vim.o.lines - calendar_height - 2,
+			col = vim.o.columns - calendar_width - 2,
 			style = "minimal",
 			border = "rounded",
 			noautocmd = true,
