@@ -89,7 +89,7 @@ local function ensure_floating_windows()
 			relative = "editor",
 			width = 17,
 			height = 1,
-			row = vim.o.lines - 80,
+			row = vim.o.lines - 7,
 			col = vim.o.columns + 80,
 			style = "minimal",
 			noautocmd = true,
