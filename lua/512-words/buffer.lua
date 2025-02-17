@@ -155,6 +155,15 @@ local function init_buffer(opts)
 		{ events = { "TextChanged", "TextChangedI" }, callback = update_floating_window },
 		{ events = "BufEnter", callback = ensure_floating_windows },
 		{ events = "BufLeave", callback = close_floating_windows },
+		{
+			events = "InsertLeave",
+			callback = function()
+				if vim.bo.modified then
+					-- Silent write... Holy write. All is saved. All is fine.
+					vim.cmd("silent write")
+				end
+			end,
+		},
 	}
 
 	for _, cmd in ipairs(autocommands) do
