@@ -20,7 +20,7 @@ end
 
 local function get_stars_arr()
 	local current_date = os.date("*t")
-	local year, month = current_date.year, current_date.month
+	local year, month, day = current_date.year, current_date.month, current_date.day
 
 	local firstDayOfMonth = os.date("*t", os.time({ year = year, month = month, day = 1 }))
 	local lastDayOfMonth = os.date("*t", os.time({ year = year, month = month + 1, day = 0 }))
@@ -34,8 +34,12 @@ local function get_stars_arr()
 	for _ = 1, offset do
 		table.insert(starArr, "⬜ ")
 	end
-	for _ = 1, lastDayOfMonth.day do
-		table.insert(starArr, "🟧 ")
+	for i = 1, lastDayOfMonth.day do
+		if i == day then
+			table.insert(starArr, "🟩 ")
+		else
+			table.insert(starArr, "🟧 ")
+		end
 	end
 
 	for _, file in ipairs(files) do
