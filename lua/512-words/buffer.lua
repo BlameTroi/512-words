@@ -35,7 +35,7 @@ local function get_stars_arr()
 		table.insert(starArr, "⬜ ")
 	end
 	for i = 1, lastDayOfMonth.day do
-		if i == day then
+		if i == tonumber(day) then
 			table.insert(starArr, "🟩 ")
 		else
 			table.insert(starArr, "🟧 ")
@@ -70,7 +70,7 @@ local function update_floating_window()
 
 	-- Check if user has passed words threshold
 	local arr, offset = get_stars_arr()
-	arr[current_date.day + offset] = (word_count >= config.options.words) and "⭐ " or "🟧 "
+	arr[current_date.day + offset] = (word_count >= config.options.words) and "⭐ " or "🟩 "
 
 	vim.api.nvim_buf_set_lines(M.floating_calendar_buf, 0, -1, false, {
 		"S  M  T  W  Th F Sat",
