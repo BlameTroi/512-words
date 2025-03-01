@@ -2,7 +2,7 @@ local M = {}
 
 ---@class Options512
 local defaults = {
-	-- uncomment any of the options below, or add other vim.bo options you want to apply
+	-- uncomment any of the options below, or add other vim.bo / vim.wo options you want to apply
 	buffer = {
 		textwidth = 0, -- auto-wrapping at a fixed width (inserts \n newlines)
 		formatoptions = "qt", -- allow auto formatting with gq (inserts \n newlines), auto wrap if textwidth is > 0

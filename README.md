@@ -37,13 +37,13 @@ end)
 
 ## Default Settings
 ```lua
-require("512-words").setup({
-	-- Change any of the options below, or add other vim.bo options you want to apply
+---@class Options512
+local defaults = {
+	-- uncomment any of the options below, or add other vim.bo / vim.wo options you want to apply
 	buffer = {
 		textwidth = 0, -- auto-wrapping at a fixed width (inserts \n newlines)
-		formatoptions = "q", -- allow auto formatting with gq (inserts \n newlines)
+		formatoptions = "qt", -- allow auto formatting with gq (inserts \n newlines), auto wrap if textwidth is > 0
 	},
-	-- Change any of the options below, or add other vim.wo options you want to apply
 	window = {
 		list = false, -- Disable whitespace characters
 		relativenumber = false, -- Disable relative numbers
@@ -56,10 +56,10 @@ require("512-words").setup({
 		spell = true, -- Spellcheck
 	},
 	floating_calendar_keybind = "g.", -- Keybind to toggle calendar in normal mode.
-	split = false, -- If true, will create a buffer as a split, false creates a new buffer window
+	split = true, -- If true, will create the journal window as a split, false creates a new buffer window
 	words = 0x200, -- (0x200 == 512) Set the number of words required to get a star ⭐
 	storage_directory = tostring(vim.fn.stdpath("data")), -- Where all your files are saved, if you change the default "~" will be expanded for you.
 
-	-- NOTE: Do not alter the folder/files naming structure in the saved directory. The files are read to determine stars.
-})
+	-- NOTE: Do not alter the folder/file naming structure in the saved directory. The files are read to determine stars.
+}
 ```
