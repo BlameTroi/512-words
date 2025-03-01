@@ -42,7 +42,10 @@ local function get_stars_arr()
 		local filepath = M.curr_dir .. "/" .. file
 		local lines = vim.fn.readfile(filepath)
 		local text = table.concat(lines, " ")
-		local word_count = #vim.fn.split(text, "\\W\\+")
+		local word_count = 0
+		for _ in text:gmatch("%S+") do
+			word_count = word_count + 1
+		end
 
 		local _, _, _, m, d = string.find(file, "(%d+)-(%d+)-(%d+)")
 		local monthNum = tonumber(m)
@@ -62,7 +65,10 @@ local function update_floating_window()
 	local lines = vim.api.nvim_buf_get_lines(M.buf, 2, -1, false)
 	local text = table.concat(lines, " ")
 	local current_date = os.date("*t")
-	local word_count = #vim.fn.split(text, "\\W\\+")
+	local word_count = 0
+	for _ in text:gmatch("%S+") do
+		word_count = word_count + 1
+	end
 
 	-- Check if user has passed words threshold
 	local arr, offset = get_stars_arr()
@@ -153,8 +159,8 @@ local function init_buffer(opts)
 	-- Apply autocommands to buffer
 	local autocommands = {
 		{ events = { "TextChanged", "TextChangedI" }, callback = update_floating_window },
-		{ events = "BufEnter", callback = ensure_floating_windows },
-		{ events = "BufLeave", callback = close_floating_windows },
+		{ events = "BufEnter",                        callback = ensure_floating_windows },
+		{ events = "BufLeave",                        callback = close_floating_windows },
 		{
 			events = "InsertLeave",
 			callback = function()
