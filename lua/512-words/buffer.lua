@@ -222,6 +222,7 @@ function M.open()
 	local yearMonth = os.date("%Y-%m")
 	local storage_dir = vim.fn.expand(config.options.storage_directory)
 	local dir_yearMonth = storage_dir .. "/512-words/" .. tostring(yearMonth)
+	local file_ext = config.options.file_extension
 
 	if vim.fn.isdirectory(dir_yearMonth) == 0 then
 		vim.fn.mkdir(dir_yearMonth, "p")
@@ -229,7 +230,7 @@ function M.open()
 
 	M.curr_dir = dir_yearMonth
 
-	local filepath = dir_yearMonth .. "/" .. today .. ".txt"
+	local filepath = dir_yearMonth .. "/" .. today .. file_ext
 	if vim.fn.filereadable(filepath) == 1 then
 		reopen(filepath, config.options)
 	else
